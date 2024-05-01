@@ -18,7 +18,7 @@ export default function Dashboard(){
       return;
     }
 
-    const response = await api.post('/order', {
+    const response = await api.post('/ordertable', {
       table: Number(number)
     })
 
@@ -37,7 +37,7 @@ export default function Dashboard(){
 
                 <TextInput
                   placeholder="Numero da mesa"
-                  placeholderTextColor="#F0F0F0"
+                  placeholderTextColor="#4f4f4f"
                   style={styles.input}
                   keyboardType="numeric"
                   value={number}
@@ -57,37 +57,37 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 15,
-    backgroundColor: '#1d1d2e'
+    backgroundColor: '#fffdf2'
   },
   title:{
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#4f4f4f',
     marginBottom: 24,
   },
   input:{
     width: '90%',
     height: 60,
-    backgroundColor: '#101026',
+    backgroundColor: '#fff2cc',
     borderRadius: 10,
     marginBottom: 20,
     paddingHorizontal: 8,
     textAlign: 'center',
     fontSize: 22,
-    color: '#FFF'
+    color: '#4f4f4f'
   },
   button:{
     width: '90%',
-    height: 40,
-    backgroundColor: '#2fda87',
+    height: 50,
+    backgroundColor: '#ffbf00',
     borderRadius: 10,
     marginVertical: 12,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   buttonText:{
     fontSize: 18,
-    color: '#101026',
+    color: '#fff',
     fontWeight: 'bold'
   }
 })

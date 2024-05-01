@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
-  FlatList
- } from 'react-native'
+  FlatList,
+  ImageBackground
+} from 'react-native'
 
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native'
 
@@ -62,7 +63,7 @@ export default function Order(){
 
   useEffect(()=> {
     async function loadInfo(){
-      const response = await api.get('/category')
+      const response = await api.get('/listcategory')
       
       setCategory(response.data);
       setCategorySelected(response.data[0])
@@ -76,7 +77,7 @@ export default function Order(){
   useEffect(() => {
 
     async function loadProducts(){
-      const response = await api.get('/category/product', {
+      const response = await api.get('/product', {
         params:{
           category_id: categorySelected?.id
         }
@@ -164,7 +165,7 @@ export default function Order(){
   }
 
   return(
-    <View style={styles.container}>
+    <ImageBackground source={require('../../assets/bg-icons-2.png')} style={styles.container}>
       
       <View style={styles.header}>
         <Text style={styles.title}>Mesa {route.params.number}</Text>
@@ -256,7 +257,7 @@ export default function Order(){
       </Modal>
 
 
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -282,9 +283,9 @@ const styles = StyleSheet.create({
   },
   input:{
     backgroundColor: '#101026',
-    borderRadius: 4,
+    borderRadius: 12,
     width: '100%',
-    height: 40,
+    height: 50,
     marginBottom: 12,
     justifyContent: 'center',
     paddingHorizontal: 8,
@@ -299,7 +300,9 @@ const styles = StyleSheet.create({
   qtdText:{
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFF'
+    color: '#FFF',
+    textAlign: 'center',
+    marginTop: -20
   },
   actions:{
     flexDirection: 'row',
@@ -308,21 +311,21 @@ const styles = StyleSheet.create({
   },
   buttonAdd:{
     width: '20%',
-    backgroundColor: '#3fd1ff',
-    borderRadius: 4,
-    height: 40,
+    backgroundColor: '#3fffa3',
+    borderRadius: 12,
+    height: 45,
     justifyContent: 'center',
     alignItems: 'center'
   },
   buttonText:{
-    color: '#101026',
+    color: '#FFF',
     fontSize: 18,
     fontWeight: 'bold'
   },
   button:{
-    backgroundColor: '#3fffa3',
-    borderRadius: 4,
-    height: 40,
+    backgroundColor: '#ffbf00',
+    borderRadius: 12,
+    height: 45,
     width: '75%',
     alignItems: 'center',
     justifyContent: 'center'

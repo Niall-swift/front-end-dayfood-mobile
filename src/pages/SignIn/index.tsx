@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  ImageBackground
 } from 'react-native'
 
 import { AuthContext } from '../../contexts/AuthContext'
@@ -30,7 +31,7 @@ export default function SignIn(){
 
 
   return(
-    <View style={styles.container}>
+    <ImageBackground source={require('../../assets/pngegg.png')} style={styles.container}>
 
       <Image
         style={styles.logo}
@@ -41,7 +42,7 @@ export default function SignIn(){
         <TextInput
           placeholder="Digite seu email"   
           style={styles.input}     
-          placeholderTextColor="#F0F0F0"
+          placeholderTextColor="#4f4f4f"
           value={email}
           onChangeText={setEmail}
         />
@@ -49,7 +50,7 @@ export default function SignIn(){
         <TextInput
           placeholder="Sua senha"      
           style={styles.input}   
-          placeholderTextColor="#F0F0F0"
+          placeholderTextColor="#4f4f4f"
           secureTextEntry={true}
           value={password}
           onChangeText={setPassword}          
@@ -64,7 +65,7 @@ export default function SignIn(){
         </TouchableOpacity>   
       </View>
 
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -73,12 +74,13 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     alignItems: 'center',
-    backgroundColor: '#1d1d2e'
+    backgroundColor: '#fffdf2'
   },
   logo:{
     marginBottom: 18,
     width: 170,
     height: 170,
+    borderRadius: 20
   },
   inputContainer:{
     width: '95%',
@@ -89,17 +91,17 @@ const styles = StyleSheet.create({
   },
   input:{
     width: '95%',
-    height: 40,
-    backgroundColor: '#101026',
+    height: 50,
+    backgroundColor: '#fff2cc',
     marginBottom: 20,
     borderRadius: 12,
     paddingHorizontal: 8,
-    color: '#FFF'
+    color: '#4f4f4f',
   },
   button:{
     width: '95%',
-    height: 40,
-    backgroundColor: '#3fffa3',
+    height: 50,
+    backgroundColor: '#ffbf00',
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center'
@@ -107,6 +109,6 @@ const styles = StyleSheet.create({
   buttonText:{
     fontSize: 18, 
     fontWeight: 'bold',
-    color: '#101026'
+    color: '#FFF'
   }
 })
