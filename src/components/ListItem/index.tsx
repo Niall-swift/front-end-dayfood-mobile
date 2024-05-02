@@ -32,7 +32,7 @@ export function ListItem({ data, deleteItem }: ItemProps){
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor: '#101026',
+    backgroundColor: '#ffbf009f',
     flex:1,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
     borderColor: '#8a8a8a'
   },
   item:{
-    color: '#FFF'
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 20
   }
 })

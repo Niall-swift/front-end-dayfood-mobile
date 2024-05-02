@@ -24,7 +24,7 @@ export default function Dashboard(){
 
     //console.log(response.data);
 
-    navigation.navigate('Order', { number: number, order_id: response.data.id })
+    navigation.navigate('Order', { number: number, ordertable_id: response.data.id })
 
     setNumber('');
 

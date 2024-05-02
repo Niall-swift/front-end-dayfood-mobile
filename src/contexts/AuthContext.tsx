@@ -50,7 +50,7 @@ export function AuthProvider({children}: AuthProviderProps){
   //Pegar os dados salvos do user
   useEffect(() => {
     async function getUser(){
-      const userInfo = await AsyncStorage.getItem('@sujeitopizzaria');
+      const userInfo = await AsyncStorage.getItem('@Dayfood');
       let hasUser: UserProps = JSON.parse(userInfo || '{}')
 
       // Verificar se recebemos as informaçoes dele.
@@ -89,7 +89,7 @@ export function AuthProvider({children}: AuthProviderProps){
         ...response.data
       };
 
-      await AsyncStorage.setItem('@sujeitopizzaria', JSON.stringify(data))
+      await AsyncStorage.setItem('@Dayfood', JSON.stringify(data))
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 

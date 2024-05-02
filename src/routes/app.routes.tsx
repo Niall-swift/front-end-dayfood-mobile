@@ -9,11 +9,11 @@ export type StackPramsList = {
   Dashboard: undefined;
   Order: {
     number: number | string;
-    order_id: string;
+    ordertable_id: string;
   };
   FinishOrder: {
     number: number | string;
-    order_id: string;
+    ordertable_id: string;
   };
 };
 

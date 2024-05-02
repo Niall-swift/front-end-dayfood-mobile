@@ -23,7 +23,7 @@ import { StackPramsList }  from '../../routes/app.routes'
 type RouteDetailParams = {
   Order:{
     number: string | number;
-    order_id: string;
+    ordertable_id: string;
   }
 }
 
@@ -61,6 +61,8 @@ export default function Order(){
   const [amount, setAmount] = useState('1')
   const [items, setItems] = useState<ItemProps[]>([]);
 
+
+  // carregando categoria
   useEffect(()=> {
     async function loadInfo(){
       const response = await api.get('/listcategory')
@@ -73,9 +75,8 @@ export default function Order(){
     loadInfo();
   }, [])
 
-
+  // caregando produtos
   useEffect(() => {
-
     async function loadProducts(){
       const response = await api.get('/product', {
         params:{
@@ -93,16 +94,14 @@ export default function Order(){
   }, [categorySelected])
 
 
+  // deletando mesa
   async function handleCloseOrder(){
     try{
-
-      await api.delete('/order', {
+      await api.delete('/order/delete', {
         params:{
-          order_id: route.params?.order_id
+          ordertable_id: route.params?.ordertable_id
         }
       })
-
-
       navigation.goBack();
 
     }catch(err){
@@ -122,7 +121,7 @@ export default function Order(){
   // adcionando um produto nessa mesa
   async function handleAdd(){
     const response = await api.post('/order/add', {
-      order_id: route.params?.order_id,
+      ordertable_id: route.params?.ordertable_id,
       product_id: productSelected?.id,
       amount: Number(amount)
     })
@@ -139,7 +138,7 @@ export default function Order(){
 
   }
 
-
+  // removendo item da mesa
   async function handleDeleteItem(item_id: string){
     await api.delete('/order/remove', {
       params:{
@@ -160,9 +159,10 @@ export default function Order(){
   function handleFinishOrder(){
     navigation.navigate("FinishOrder", { 
       number: route.params?.number, 
-      order_id: route.params?.order_id
+      ordertable_id: route.params?.ordertable_id
     } )
   }
+
 
   return(
     <ImageBackground source={require('../../assets/bg-icons-2.png')} style={styles.container}>
@@ -178,7 +178,7 @@ export default function Order(){
 
       {category.length !== 0 && (
         <TouchableOpacity style={styles.input} onPress={ () => setModalCategoryVisible(true) }>
-          <Text style={{ color: '#FFF' }}>
+          <Text style={{ color: '#4f4f4f' }}>
             {categorySelected?.name}
           </Text>
         </TouchableOpacity>
@@ -186,7 +186,7 @@ export default function Order(){
 
       {products.length !== 0 && (
         <TouchableOpacity style={styles.input} onPress={ () => setModalProductVisible(true)} >
-          <Text style={{ color: '#FFF' }}>
+          <Text style={{ color: '#4f4f4f' }}>
             {productSelected?.name}
           </Text>
         </TouchableOpacity>        
@@ -196,7 +196,7 @@ export default function Order(){
         <Text style={styles.qtdText}>Quantidade</Text>
         <TextInput
           style={[styles.input, { width: '60%', textAlign: 'center' } ]}
-          placeholderTextColor="#F0F0F0"
+          placeholderTextColor="#4f4f4f"
           keyboardType="numeric"
           value={amount}
           onChangeText={setAmount}
@@ -256,7 +256,7 @@ export default function Order(){
 
       </Modal>
 
-
+    
     </ImageBackground>
   )
 }
@@ -264,7 +264,7 @@ export default function Order(){
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: '#1d1d2e',
+    backgroundColor: '#fffdf2',
     paddingVertical: '5%',
     paddingEnd: '4%',
     paddingStart: '4%'
@@ -278,18 +278,18 @@ const styles = StyleSheet.create({
   title:{
     fontSize:30,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#4f4f4f',
     marginRight: 14
   },
   input:{
-    backgroundColor: '#101026',
+    backgroundColor: '#fff2cc',
     borderRadius: 12,
     width: '100%',
     height: 50,
     marginBottom: 12,
     justifyContent: 'center',
     paddingHorizontal: 8,
-    color: '#FFF',
+    color: '#4f4f4f',
     fontSize: 20,
   },
   qtdContainer:{
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   qtdText:{
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#4f4f4f',
     textAlign: 'center',
     marginTop: -20
   },

@@ -12,7 +12,7 @@ import { api } from '../../services/api'
 type RouteDetailParams = {
   FinishOrder: {
     number: string | number;
-    order_id: string;
+    ordertable_id: string;
   }
 }
 
@@ -27,7 +27,7 @@ export default function FinishOrder(){
   async function handleFinish(){
     try{
       await api.put('/order/send', {
-        order_id: route.params?.order_id
+        ordertable_id: route.params?.ordertable_id
       })
 
 
