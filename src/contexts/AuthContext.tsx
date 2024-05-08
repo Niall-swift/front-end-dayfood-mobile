@@ -43,10 +43,14 @@ export function AuthProvider({children}: AuthProviderProps){
   })
 
   const [loadingAuth, setLoadingAuth] = useState(false)
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const isAuthenticated = !!user.name; 
+  const isAuthenticated = !!user.name;
+  console.log(user)
+  console.log(isAuthenticated)
 
+
+  
   //Pegar os dados salvos do user
   useEffect(() => {
     async function getUser(){
@@ -69,10 +73,8 @@ export function AuthProvider({children}: AuthProviderProps){
       setLoading(false);
 
     }
-
-
-    getUser();
-
+    getUser()
+    
   }, [])
 
 
